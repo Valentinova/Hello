@@ -1,0 +1,39 @@
+<2014 04 16> 上班实习第一天
+
+
+1、熟悉了基于SLA技术的3D打印机的主要关键问题，机械结构。
+　　控制系统是基于PC-Clinet和一个树莓派ARM/Linux-Server系统的架构。
+　　 Clinet负责3D模型的切片，Server负责控制Motor和Projector。
+2、建立Ubuntu上的QT开发平台（很简单，直接apt-get，再装一个QT Creator）。学习Git
+3、对现有的Client端程序（QT C++）进行熟悉，学习源代码。
+4、了解Server端C程序的总体架构.
+
+<2014 04 17>
+今天主要做了以下事：
+1、对3D printer的两种格式做了了解。3D文件是STL格式，这是一种由三角形来近似描述空间几何体的格式。通过切片分层，可以转换为SVG格式，这种格式用多边形（polygon）来描述平面几何体。可以直观的想象STL中立体图像在某个平面的投影便是多边形的。在公司的软件实现中，使用了一个开源软件的引擎curaegine来实现切片分层。    值得注意的是，SVG格式是用XML语言来描述的，可以用编辑器打开。
+
+2、初步阅读了server端（raspberry/ARM linux）的程序代码。这个程序用3个thread来实现gatekeeper/frontend/backend三个层次的功能，gatekeeper主要用来跟cliet进行初步交会（基于TCP/IP Socket），如果printer空闲，则再进入到frontend线程进行交互，backend实现了printer的打印控制过程，包括对hardware的控制（motor\projector\uart）,还能进行SVG格式的处理（给projector通过HDMI接口输出图像）。
+   thread编程中需要注意一些同步和通讯问题。(互斥锁、读写锁、条件变量。通常用互斥锁和条件变量组合来使用。server端就是这么做的。)
+
+3、了解了ssh的某些功能，可以通过nmap发现局域网中的主机，通过ssh登录后可以方便的进行远程终端操作，可以进行文件拷贝scp。只要开发板安装了linux基本系统后，就可以通过网络连接进行开发。普通体积的程序可以直接在board上进行编译，而不用在pc上使用交叉编译器。
+
+4、vim写代码是极好的，但是阅读代码不方便,阅读代码需要频繁的在函数和变量的定义/实现/引用处进行跳转，最好能进行超链接跳转。在ubuntu里装wine-->SourceInsight在我看来是比较好的。或者直接用eclipse。
+
+<2014 04 18>
+今天主要对Server端程序ver2.0增加了开关projector的功能，在Client端的debug程序中也加入了相应的控制按钮。
+
+下一步计划先对projector的buffer写纯色用于printer机器的调试。
+然后可以考虑加入显示任意一副picture或者切片后的SGV指定任何一个layer的图像。
+
+<2014 04 20>
+今天主要实现了开关projector、显示不同的全屏颜色（可以用来机器调试）,在Server端和Client端加入了相应的操作指令/按钮。
+
+了解了RaspberryPi上的linux系统的HDMI输出架构。
+
+了解了基于EGL（embedded graphic library）的API编程模式。EGL主要可以进行openGL ES和openGV的编程。openGL ES是openGL的嵌入式版本，openGV是一个轻量级矢量图形绘制库，它们都可以使用SoC上的显卡硬件加速。它们的编程模式也是相似的，可以基于管线-状态机的概念。
+
+<2014 04 21>
+实现了projector显示切片后SGV文件的任意layer的图像。
+
+
+
