@@ -1,4 +1,6 @@
 <2014 04 16> 上班实习第一天
+
+
 1、熟悉了基于SLA技术的3D打印机的主要关键问题，机械结构。
 　　控制系统是基于PC-Clinet和一个树莓派ARM/Linux-Server系统的架构。
 　　 Clinet负责3D模型的切片，Server负责控制Motor和Projector。
@@ -33,5 +35,8 @@
 <2014 04 21>
 实现了projector显示切片后SGV文件的任意layer的图像。
 
+<2014 04 22>
+实现了projector显示光栅图像用于printer的调焦。光栅的参数（密度、线条粗细）可以在client端调整。
 
+实现了load一副JPEG图像去server端并在projector上显示。
 
