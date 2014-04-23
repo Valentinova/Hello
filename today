@@ -40,3 +40,5 @@
 
 实现了load一副JPEG图像去server端并在projector上显示。
 
+<2014 04 23>
+实现了Server端的Heartbeat功能，超过5s没有客户端的信号过来就自动关掉Socket重连。以便Client意外死机后重新连线。
