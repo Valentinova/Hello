@@ -1,14 +1,14 @@
-" Ription: 适合自己使用的vimrc文件，for Linux/Windows, GUI/Console
+" Ription: 适合自己使用的vimrc
 "
-" Last Change: 2010年08月02日 15时13分 
+" Last Change: 2014.04.26
 "
-" Version: 1.80
+" Version: 0.1
 "
 "=========================================================================
 
 set nocompatible " 关闭 vi 兼容模式
 syntax on " 自动语法高亮
-"colorscheme molokai " 设定配色方案
+
 set number " 显示行号
 set cursorline " 突出显示当前行
 set ruler " 打开状态栏标尺
@@ -17,7 +17,9 @@ set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
 set tabstop=4 " 设定 tab 长度为 4
 set nobackup " 覆盖文件时不备份
 set autochdir " 自动切换当前目录为当前文件所在的目录
+
 filetype plugin indent on " 开启插件
+
 set backupcopy=yes " 设置备份时的行为为覆盖
 set ignorecase smartcase " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 set nowrapscan " 禁止在搜索到文件两端时重新搜索
@@ -39,14 +41,15 @@ set cmdheight=1 " 设定命令行的行数为 1
 set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\ 
 " 设置在状态行显示的信息
+
+" zR zM 打开关闭所有折叠
 set foldenable " 开始折叠
 set foldmethod=syntax " 设置语法折叠
 set foldcolumn=0 " 设置折叠区域的宽度
-setlocal foldlevel=100 " 设置折叠层数为
+setlocal foldlevel=0 " 设置折叠层数为
 set foldclose=all " 设置为自动关闭折叠 
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 用空格键来开关折叠
-
 
 " return OS type, eg: windows, or linux, mac, et.st..
 function! MySys()
@@ -60,7 +63,7 @@ endfunction
 " 用户目录变量$VIMFILES
 if MySys() == "windows"
 let $VIMFILES = $VIM.'/vimfiles'
-elseif MySys() == "linux"
+elseif MySys() == "linux" " 兼容mac 配置文件夹~/.vim/doc plugin syntax
 let $VIMFILES = $HOME.'/.vim'
 endif
 
@@ -82,15 +85,6 @@ set fencs=utf-8,gbk
 
 if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
 set ambiwidth=double
-endif
-
-if has("win32")
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-language messages zh_CN.utf-8
-endif
-else
-echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
 endif
 
 " Buffers操作快捷方式!
@@ -115,43 +109,17 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-"一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用）
-nnoremap <leader>1 :set filetype=xhtml<CR>
-nnoremap <leader>2 :set filetype=css<CR>
-nnoremap <leader>3 :set filetype=javascript<CR>
-nnoremap <leader>4 :set filetype=php<CR>
-
-" set fileformats=unix,dos,mac
-" nmap <leader>fd :se fileformat=dos<CR>
-" nmap <leader>fu :se fileformat=unix<CR>
-
-" use Ctrl+[l|n|p|cc] to list|next|previous|jump to count the result
-" map <C-x>l <ESC>:cl<CR>
-" map <C-x>n <ESC>:cn<CR>
-" map <C-x>p <ESC>:cp<CR>
-" map <C-x>c <ESC>:cc<CR>
-
-
-" 让 Tohtml 产生有 CSS 语法的 html
-" syntax/2html.vim，可以用:runtime! syntax/2html.vim
-let html_use_css=1
-
-" Python 文件的一般设置，比如不要 tab 等
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
-autocmd FileType python map <F12> :!python %<CR>
-
-" 选中状态下 Ctrl+c 复制
-vmap <C-c> "+y
-
-" 打开javascript折叠
-let b:javascript_fold=1
-" 打开javascript对dom、html和css的支持
-let javascript_enable_domhtmlcss=1
-" 设置字典 ~/.vim/dict/文件的路径
-autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
-autocmd filetype css set dictionary=$VIMFILES/dict/css.dict
-autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
+"-----------------------------------------------------------------
+"-----------------------------------------------------------------
+"-----------------------------------------------------------------
+"-----------------------------------------------------------------
+"-----------------------------------------------------------------
+"-----------------------------------------------------------------
+"-----------------------------------------------------------------
+"-----------------------------------------------------------------
+" plugin - ctags.vim切换
+"-----------------------------------------------------------------
+let Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8/bin/ctags'
 
 "-----------------------------------------------------------------
 " plugin - bufexplorer.vim Buffers切换
@@ -159,17 +127,10 @@ autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
 " \bv 左右方式查看 \bs 上下方式查看
 "-----------------------------------------------------------------
 
-
 "-----------------------------------------------------------------
 " plugin - taglist.vim 查看函数列表，需要ctags程序
 " F4 打开隐藏taglist窗口
 "-----------------------------------------------------------------
-if MySys() == "windows" " 设定windows系统中ctags程序的位置
-let Tlist_Ctags_Cmd = '"'.$VIMRUNTIME.'/ctags.exe"'
-elseif MySys() == "linux" " 设定windows系统中ctags程序的位置
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-endif
-nnoremap <silent><F4> :TlistToggle<CR>
 let Tlist_Show_One_File = 1 " 不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1 " 如果taglist窗口是最后一个窗口，则退出vim
 let Tlist_Use_Right_Window = 1 " 在右侧窗口中显示taglist窗口
@@ -181,7 +142,6 @@ let Tlist_Enable_Fold_Column = 0
 let Tlist_Process_File_Always = 1
 let Tlist_Display_Prototype = 0
 let Tlist_Compact_Format = 1
-
 
 "-----------------------------------------------------------------
 " plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。
@@ -239,13 +199,6 @@ map <leader>dc a <LEFT><LEFT><LEFT>
 
 
 "-----------------------------------------------------------------
-" plugin – checksyntax.vim JavaScript常见语法错误检查
-" 默认快捷方式为 F5
-"-----------------------------------------------------------------
-let g:checksyntax_auto = 0 " 不自动检查
-
-
-"-----------------------------------------------------------------
 " plugin - NeoComplCache.vim 自动补全插件
 "-----------------------------------------------------------------
 let g:AutoComplPop_NotEnableAtStartup = 1
@@ -281,3 +234,4 @@ smap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
 "-----------------------------------------------------------------
 " plugin – a.vim
 "-----------------------------------------------------------------
+endif
