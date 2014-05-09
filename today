@@ -79,3 +79,9 @@
 下午，将server程序的code进行了clear，排除掉了在gcc编译过程中产生的警告。按照王总的建议，将code中一些含义不清或者有歧义的变量重新命名，并纠正了code中的一些错误问题。
 
 接下来的工作：1、进一步review和清理sever code。 2、编写wiki pages，对printer架构进行详细说明，主要侧重在server程序的设计。
+
+2014 05 09
+
+今天把socket中的recv函数研究了一下，纠正了之前的一些错误。经测试已经比较稳定。
+
+下午计划写wiki page。
