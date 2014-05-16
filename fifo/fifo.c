@@ -12,6 +12,9 @@ int fifo_out(fifo* fifo_ptr);
 fifo* fifo_create(void){
 	fifo *fifo_ptr = malloc(sizeof(fifo));
 	memset(fifo_ptr, 0, sizeof(fifo));
+	fifo_ptr->write_ptr = 0;
+	fifo_ptr->read_ptr = 0;
+	fifo_ptr->flag = EMPTY;
 	return fifo_ptr;
 }
 
@@ -21,34 +24,38 @@ void fifo_destroy(fifo* fifo_ptr){
 }
 
 void fifo_in(fifo* fifo_ptr, int data){
-	if((fifo_ptr->write_ptr < 10) && (fifo_ptr->write_ptr >= 0)){
+	if(fifo_ptr->flag != FULL ){
 		fifo_ptr->item[fifo_ptr->write_ptr] = data;
 		fifo_ptr->write_ptr ++;
+		fifo_ptr->write_ptr %= FIFO_LENGTH;
+		if((fifo_ptr->write_ptr - fifo_ptr->read_ptr) == -1){
+			fifo_ptr->flag = FULL;
+		}else{
+			fifo_ptr->flag = NORMAL;
+		}
 		printf("							write_ptr = %d \n", fifo_ptr->write_ptr);
 	}else{
-		printf("error: fifo overflow \n");
+		printf("fifo is full, write invalide\n");
 	}
 }
 
 int fifo_out(fifo* fifo_ptr){
 	int data = 0;
 
-	if(fifo_ptr->write_ptr > 0){
-	   	if(fifo_ptr->read_ptr < fifo_ptr->write_ptr){
-			data = fifo_ptr->item[fifo_ptr->read_ptr];
-			fifo_ptr->read_ptr ++;
-			if(fifo_ptr->read_ptr == fifo_ptr->write_ptr){
-				fifo_ptr->read_ptr = 0;
-				fifo_ptr->write_ptr = 0;		
-			}
-			printf("							read_ptr = %d \n", fifo_ptr->read_ptr);
-			return data;
-		}else if(fifo_ptr->read_ptr == fifo_ptr->write_ptr){
-			fifo_ptr->read_ptr = 0;
-			fifo_ptr->write_ptr = 0;		
-			return -1;
+	if(fifo_ptr->flag != EMPTY){
+		data = fifo_ptr->item[fifo_ptr->read_ptr];
+		fifo_ptr->read_ptr ++;
+		fifo_ptr->read_ptr %= FIFO_LENGTH;
+		if((fifo_ptr->write_ptr - fifo_ptr->read_ptr) == 0){
+			fifo_ptr->flag = EMPTY;	
 		}
+				printf("							read_ptr = %d \n", fifo_ptr->read_ptr);
+		return data;
+	}else{
+		printf("fifo is empty, read invalide\n");
+		return -1;
 	}
+
 	return -1;
 }
 

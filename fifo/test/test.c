@@ -3,7 +3,6 @@
 #include <signal.h>
 #include <unistd.h>
 #include <sys/types.h>
-
 #include "../fifo.h"
 
 pthread_mutex_t lock_fifo;
@@ -16,7 +15,7 @@ void * producer_thread1(void *pin){
 		fifo_in(myfifo, 1);
 		pthread_mutex_unlock(&lock_fifo);
 		printf("producer1 put 1 into myfifo\n");
-		sleep(1);
+		usleep(2000000);
 	}
 		return((void*)0);
 }
@@ -28,7 +27,7 @@ void * producer_thread2(void *pin){
 		fifo_in(myfifo, 2);
 		pthread_mutex_unlock(&lock_fifo);
 		printf("producer2 put 2 into myfifo\n");
-		sleep(1);
+		usleep(1500000);
 	}
 		return((void*)0);
 }
@@ -42,7 +41,7 @@ void * consumer_thread1(void *pin){
 		require = fifo_out(myfifo);
 		pthread_mutex_unlock(&lock_fifo);
 		printf("	consumer1 get %d form myfifo\n", require);
-		sleep(1);
+		usleep(1000000);
 	}
 		return((void*)0);
 }
@@ -56,7 +55,7 @@ void * consumer_thread2(void *pin){
 		require = fifo_out(myfifo);
 		pthread_mutex_unlock(&lock_fifo);
 		printf("	consumer2 get %d form myfifo\n", require);
-		sleep(1);
+		usleep(1000000);
 	}
 		return((void*)0);
 }
