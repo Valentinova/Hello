@@ -1,0 +1,28 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	test/Makefile	/^CC = gcc$/;"	m
+CFLAGS	test/Makefile	/^CFLAGS := -g -Wall $/;"	m
+FIFO_LENGTH	fifo.h	4;"	d
+LIB	test/Makefile	/^LIB := -lpthread$/;"	m
+OBJ	test/Makefile	/^OBJ = ..\/fifo.o .\/test.o$/;"	m
+__FIFO_H__	fifo.h	2;"	d
+consumer_thread1	test/test.c	/^void * consumer_thread1(void *pin){$/;"	f
+consumer_thread2	test/test.c	/^void * consumer_thread2(void *pin){$/;"	f
+fifo	fifo.h	/^}fifo;$/;"	t	typeref:struct:require_fifo
+fifo_create	fifo.c	/^fifo* fifo_create(void){$/;"	f
+fifo_destroy	fifo.c	/^void fifo_destroy(fifo* fifo_ptr){$/;"	f
+fifo_in	fifo.c	/^void fifo_in(fifo* fifo_ptr, int data){$/;"	f
+fifo_out	fifo.c	/^int fifo_out(fifo* fifo_ptr){$/;"	f
+item	fifo.h	/^	int item[FIFO_LENGTH];$/;"	m	struct:require_fifo
+lock_fifo	test/test.c	/^pthread_mutex_t lock_fifo;$/;"	v
+main	test/test.c	/^int main(){$/;"	f
+myfifo	test/test.c	/^fifo* myfifo;$/;"	v
+producer_thread1	test/test.c	/^void * producer_thread1(void *pin){$/;"	f
+producer_thread2	test/test.c	/^void * producer_thread2(void *pin){$/;"	f
+read_ptr	fifo.h	/^	int read_ptr;$/;"	m	struct:require_fifo
+require_fifo	fifo.h	/^typedef struct require_fifo{$/;"	s
+write_ptr	fifo.h	/^	int write_ptr;$/;"	m	struct:require_fifo

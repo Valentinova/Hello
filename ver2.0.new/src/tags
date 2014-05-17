@@ -1,0 +1,286 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BACKLOG	frontend/frontend.h	43;"	d
+BAUD_RATE	backend/hardware/uart/uart.h	27;"	d
+BEATCYCLE	backend/hardware/time/Time.h	8;"	d
+BIAS	backend/hardware/image/image.h	7;"	d
+BIAS_X	backend/hardware/image/image.h	4;"	d
+BIAS_Y	backend/hardware/image/image.h	5;"	d
+BLACKTIME	backend/hardware/image/image.h	13;"	d
+BeatTimeout	backend/hardware/time/time.c	/^ void BeatTimeout(union sigval sig)  $/;"	f
+CAMERA_CMD_LEN	backend/hardware/uart/uart.h	16;"	d
+CAMERA_STA_IDLE	backend/hardware/uart/uart.h	21;"	d
+CAMERA_STA_SHUTDOWN	backend/hardware/uart/uart.h	23;"	d
+CAMERA_STA_WORKING	backend/hardware/uart/uart.h	24;"	d
+CAMERA_WORK_START	backend/hardware/uart/uart.h	19;"	d
+CAMERA_WORK_STOP	backend/hardware/uart/uart.h	18;"	d
+CAMETA_STA_STOP	backend/hardware/uart/uart.h	22;"	d
+CMD_	backend/hardware/oled/oled.h	19;"	d
+CMD_SCA	backend/hardware/oled/oled.h	11;"	d
+CMD_SCL	backend/hardware/oled/oled.h	14;"	d
+CMD_SDOFF	backend/hardware/oled/oled.h	16;"	d
+CMD_SDON	backend/hardware/oled/oled.h	15;"	d
+CMD_SFCD	backend/hardware/oled/oled.h	17;"	d
+CMD_SMR	backend/hardware/oled/oled.h	18;"	d
+CMD_SRA	backend/hardware/oled/oled.h	13;"	d
+CMD_WRA	backend/hardware/oled/oled.h	12;"	d
+CURETIME	backend/hardware/image/image.h	12;"	d
+CharacterMap	backend/hardware/image/fontinfo.h	/^	const short *CharacterMap;$/;"	m	struct:__anon1
+Count	backend/hardware/image/fontinfo.h	/^	int Count;$/;"	m	struct:__anon1
+DIR_DOWN	backend/hardware/motor/motor.h	27;"	d
+DIR_UP	backend/hardware/motor/motor.h	28;"	d
+DRIVEPHASE	backend/hardware/motor/motor.h	12;"	d
+Draw_raster	backend/hardware/image/image.c	/^void Draw_raster(int defi_x, int defi_y, int bold) \/\/for printer debug$/;"	f
+ERROR	frontend/frontend.h	8;"	d
+FILENAME	frontend/frontend.h	45;"	d
+FILENAME2	frontend/frontend.h	46;"	d
+FINISH_MARK	frontend/frontend.h	39;"	d
+Fontinfo	backend/hardware/image/fontinfo.h	/^} Fontinfo;$/;"	t	typeref:struct:__anon1
+GAPLEN	backend/hardware/motor/motor.h	15;"	d
+GDI	backend/hardware/oled/oled.h	8;"	d
+GET_FILE	frontend/frontend.h	14;"	d
+GET_FILE_JPEG	frontend/frontend.h	22;"	d
+GET_PARA	frontend/frontend.h	13;"	d
+GPIO_DIRECTION	backend/hardware/motor/motor.c	11;"	d	file:
+GPIO_INPUT	backend/hardware/motor/motor.c	12;"	d	file:
+GPIO_INPUT1	backend/hardware/motor/motor.c	13;"	d	file:
+GPIO_ROTOR	backend/hardware/motor/motor.c	10;"	d	file:
+GRST	backend/hardware/oled/oled.h	7;"	d
+GlyphAdvances	backend/hardware/image/fontinfo.h	/^	const int *GlyphAdvances;$/;"	m	struct:__anon1
+Glyphs	backend/hardware/image/fontinfo.h	/^	VGPath Glyphs[256];$/;"	m	struct:__anon1
+HANDSHAKE	frontend/frontend.h	11;"	d
+HEARTBEAT	frontend/frontend.h	23;"	d
+HUNG_CMD	frontend/frontend.h	17;"	d
+HeartBeatTimer	backend/hardware/time/time.c	/^ timer_t  HeartBeatTimer; $/;"	v
+IDLE	frontend/frontend.h	44;"	d
+IMAGE_WORK_DISPLAY	backend/hardware/image/image.h	11;"	d
+Image_fresh_layer	backend/hardware/image/image.c	/^void Image_fresh_layer(int layer)$/;"	f
+InitHeartBeat	backend/hardware/time/time.c	/^ void InitHeartBeat(void)$/;"	f
+LAYERS_STATUS	frontend/frontend.h	16;"	d
+LEVEL_HIGH	backend/hardware/motor/motor.h	21;"	d
+LEVEL_LOW	backend/hardware/motor/motor.h	22;"	d
+MAXDATASIZE	frontend/frontend.h	9;"	d
+MICRODIV	backend/hardware/motor/motor.h	13;"	d
+MOTOR_MOVE	frontend/frontend.h	19;"	d
+MOTOR_WORK_DOWN	backend/hardware/motor/motor.h	31;"	d
+MOTOR_WORK_UP	backend/hardware/motor/motor.h	32;"	d
+MSPEED	backend/hardware/motor/motor.h	14;"	d
+MonoTypeface	backend/hardware/image/fontinfo.h	/^Fontinfo SansTypeface, SerifTypeface, MonoTypeface;$/;"	v
+Motor_move	backend/backend.c	/^void Motor_move()$/;"	f
+OBJECTS	backend/hardware/image/Makefile	/^OBJECTS = image.o$/;"	m
+OFFLINE	frontend/frontend.h	7;"	d
+ONLINE	frontend/frontend.h	6;"	d
+PRINT_INIT_PLACE	backend/hardware/motor/motor.h	29;"	d
+PROJ_CMD	frontend/frontend.h	21;"	d
+PROJ_DEBUG	frontend/frontend.h	30;"	d
+PROJ_LAYER	frontend/frontend.h	31;"	d
+PROJ_OFF	frontend/frontend.h	29;"	d
+PROJ_ON	frontend/frontend.h	28;"	d
+RD_NUM	backend/hardware/uart/uart.h	14;"	d
+RECOVER	frontend/frontend.h	18;"	d
+Rect_fill	backend/hardware/image/image.c	/^void Rect_fill(VGfloat x, VGfloat y, VGfloat w, VGfloat h) {$/;"	f
+Reset_HeartBeat	backend/hardware/time/time.c	/^ void Reset_HeartBeat(void)$/;"	f
+SCALE	backend/hardware/image/image.h	6;"	d
+SCREW_ONE_CIRCLE	backend/hardware/motor/motor.h	26;"	d
+SEND_INFO	frontend/frontend.h	12;"	d
+SERIAL_DEV_0	backend/hardware/uart/uart.h	11;"	d
+SERIAL_DEV_1	backend/hardware/uart/uart.h	12;"	d
+SERVPORT	frontend/frontend.h	42;"	d
+SERVPORT	gatekeeper/gatekeeper.h	4;"	d
+START_PRINT	frontend/frontend.h	15;"	d
+STEP_100UM	backend/hardware/motor/motor.h	16;"	d
+SansTypeface	backend/hardware/image/fontinfo.h	/^Fontinfo SansTypeface, SerifTypeface, MonoTypeface;$/;"	v
+SerifTypeface	backend/hardware/image/fontinfo.h	/^Fontinfo SansTypeface, SerifTypeface, MonoTypeface;$/;"	v
+WORK_ABNORMAL	frontend/frontend.h	37;"	d
+WORK_NORMAL	frontend/frontend.h	36;"	d
+WORK_OVER	frontend/frontend.h	20;"	d
+XGA_H	backend/hardware/image/image.h	10;"	d
+XGA_W	backend/hardware/image/image.h	9;"	d
+_DOUBLY_LINKED_LIST	inc/dlink.h	2;"	d
+_TIME_H_	backend/hardware/time/Time.h	6;"	d
+__BACKEND_H__	backend/backend.h	2;"	d
+__CORE_H__	core/core.h	2;"	d
+__CRC32_H	inc/crc32.h	17;"	d
+__FRONTEND_H__	frontend/frontend.h	2;"	d
+__GATEKEEPER_H__	gatekeeper/gatekeeper.h	2;"	d
+__HARDWARE_H__	backend/hardware/hardware.h	2;"	d
+__IMAGE_H__	backend/hardware/image/image.h	2;"	d
+__MOTOR_H__	backend/hardware/motor/motor.h	6;"	d
+__OLED_H__	backend/hardware/oled/oled.h	5;"	d
+__TYPEDE_DEF_H__	inc/typedef.h	7;"	d
+__UART_H__	backend/hardware/uart/uart.h	7;"	d
+_cmd_t	frontend/frontend.h	/^typedef struct _cmd_t$/;"	s
+_connect_t	frontend/frontend.h	/^typedef struct _connect_t$/;"	s
+_dlink_entry_t	inc/dlink.h	/^typedef struct _dlink_entry_t$/;"	s
+_dlink_t	inc/dlink.h	/^typedef struct _dlink_t$/;"	s
+_feedback_t	frontend/frontend.h	/^typedef struct _feedback_t$/;"	s
+_info_t	frontend/frontend.h	/^typedef struct _info_t$/;"	s
+_parameters_t	frontend/frontend.h	/^typedef struct _parameters_t$/;"	s
+auto_input_off_cmd	backend/hardware/uart/uart.h	/^static const u8 auto_input_off_cmd[CAMERA_CMD_LEN] = {$/;"	v
+auto_input_on_cmd	backend/hardware/uart/uart.h	/^static const u8 auto_input_on_cmd[CAMERA_CMD_LEN] = {$/;"	v
+auto_sig_src_cmd	backend/hardware/uart/uart.h	/^static const u8 auto_sig_src_cmd[CAMERA_CMD_LEN] = {$/;"	v
+auto_sig_sync_cmd	backend/hardware/uart/uart.h	/^static const u8 auto_sig_sync_cmd[CAMERA_CMD_LEN] = {$/;"	v
+backend_thread	backend/backend.c	/^void * backend_thread()$/;"	f
+beatcnt	backend/hardware/time/Time.h	/^unsigned int beatcnt;$/;"	v
+buf	frontend/frontend.h	/^	char  buf[MAXDATASIZE];$/;"	m	struct:_feedback_t
+buf	frontend/frontend.h	/^	unsigned char buf[MAXDATASIZE];$/;"	m	struct:_cmd_t
+buf_len	frontend/frontend.h	/^	int buf_len;	\/\/the length of struct$/;"	m	struct:_cmd_t
+buf_len	frontend/frontend.h	/^	int buf_len;\/\/the length of struct$/;"	m	struct:_feedback_t
+clear_oled	backend/hardware/oled/oled.c	/^void clear_oled (void)$/;"	f
+client_fd	frontend/frontend.c	/^int client_fd;$/;"	v
+close_client	frontend/frontend.c	/^int  close_client(int cmd,int sockfd)$/;"	f
+cmd	frontend/frontend.h	/^	int cmd;$/;"	m	struct:_cmd_t
+cmd_parameters	frontend/frontend.c	/^int cmd_parameters[3];$/;"	v
+cmd_recv	frontend/frontend.c	/^int  cmd_recv( cmd_t * cmd,int sockfd)$/;"	f
+cmd_t	frontend/frontend.h	/^}cmd_t;$/;"	t	typeref:struct:_cmd_t
+command	frontend/frontend.c	/^cmd_t command;$/;"	v
+cond_fd	frontend/frontend.c	/^pthread_cond_t  cond_fd;$/;"	v
+cond_hung	frontend/frontend.c	/^pthread_cond_t  cond_hung;$/;"	v
+cond_job	frontend/frontend.c	/^pthread_cond_t  cond_job;$/;"	v
+connect_t	frontend/frontend.h	/^} connect_t;$/;"	t	typeref:struct:_connect_t
+container_of	inc/dlink.h	154;"	d
+crc32_tab	inc/crc32.c	/^static const u_int crc32_tab[] = {$/;"	v	file:
+createTimer	backend/hardware/time/time.c	/^ void createTimer(timer_t *timerId)  $/;"	f
+cure_time	frontend/frontend.h	/^	int cure_time;$/;"	m	struct:_parameters_t
+dis_0	backend/hardware/oled/oled.h	/^static unsigned char dis_0[32] = {$/;"	v
+dis_1	backend/hardware/oled/oled.h	/^static unsigned char dis_1[32] = {$/;"	v
+dis_2	backend/hardware/oled/oled.h	/^static unsigned char dis_2[32] = {$/;"	v
+dis_3	backend/hardware/oled/oled.h	/^static unsigned char dis_3[32] = {$/;"	v
+dis_4	backend/hardware/oled/oled.h	/^static unsigned char dis_4[32] = {$/;"	v
+dis_5	backend/hardware/oled/oled.h	/^static unsigned char dis_5[32] = {$/;"	v
+dis_6	backend/hardware/oled/oled.h	/^static unsigned char dis_6[32] = {$/;"	v
+dis_7	backend/hardware/oled/oled.h	/^static unsigned char dis_7[32] = {$/;"	v
+dis_8	backend/hardware/oled/oled.h	/^static unsigned char dis_8[32] = {$/;"	v
+dis_9	backend/hardware/oled/oled.h	/^static unsigned char dis_9[32] = {$/;"	v
+dis_C	backend/hardware/oled/oled.h	/^static unsigned char dis_C[72] = {$/;"	v
+dis_E	backend/hardware/oled/oled.h	/^static unsigned char dis_E[72] = {$/;"	v
+dis_G	backend/hardware/oled/oled.h	/^static unsigned char dis_G[72] = {$/;"	v
+dis_H	backend/hardware/oled/oled.h	/^static unsigned char dis_H[72] = {$/;"	v
+dis_N	backend/hardware/oled/oled.h	/^static unsigned char dis_N[72] = {$/;"	v
+dis_R	backend/hardware/oled/oled.h	/^static unsigned char dis_R[72] = {$/;"	v
+dis_T	backend/hardware/oled/oled.h	/^static unsigned char dis_T[72] = {$/;"	v
+dis_dot	backend/hardware/oled/oled.h	/^static unsigned char dis_dot[32] = {$/;"	v
+dis_ji	backend/hardware/oled/oled.h	/^static unsigned char dis_ji[72] = {$/;"	v
+dis_ke	backend/hardware/oled/oled.h	/^static unsigned char dis_ke[72] = {$/;"	v
+dis_l3	backend/hardware/oled/oled.h	/^static unsigned char dis_l3[72] = {$/;"	v
+dis_qing	backend/hardware/oled/oled.h	/^static unsigned char dis_qing[72] = {$/;"	v
+dis_rod	backend/hardware/oled/oled.h	/^static unsigned char dis_rod[32] = {$/;"	v
+dis_xiao	backend/hardware/oled/oled.h	/^static unsigned char dis_xiao[72] = {$/;"	v
+display_font	backend/hardware/oled/oled.c	/^void display_font (void)$/;"	f
+display_int	backend/hardware/oled/oled.c	/^void display_int(int num)$/;"	f
+display_ip	backend/hardware/oled/oled.c	/^int display_ip(void)$/;"	f
+display_oled_16	backend/hardware/oled/oled.c	/^void display_oled_16(unsigned char *array, int col_s, int col_e, int row_s, int row_e)$/;"	f
+display_oled_24	backend/hardware/oled/oled.c	/^void display_oled_24(unsigned char *array, int col_s, int col_e, int row_s, int row_e)$/;"	f
+display_oled_image	backend/hardware/oled/oled.c	/^void display_oled_image(const unsigned char * array)$/;"	f
+dlink_entry_t	inc/dlink.h	/^} dlink_entry_t;$/;"	t	typeref:struct:_dlink_entry_t
+dlink_foreach	inc/dlink.h	134;"	d
+dlink_foreach_reverse	inc/dlink.h	144;"	d
+dlink_foreach_safe	inc/dlink.h	139;"	d
+dlink_init	inc/dlink.h	/^dlink_init(dlink_t *dlink)$/;"	f
+dlink_insert_after	inc/dlink.h	/^dlink_insert_after(dlink_entry_t *t, dlink_entry_t *entry)$/;"	f
+dlink_is_empty	inc/dlink.h	/^dlink_is_empty(dlink_t *dlink)$/;"	f
+dlink_move	inc/dlink.h	/^dlink_move(dlink_t *dlink_dst, dlink_t *dlink_src)$/;"	f
+dlink_peek	inc/dlink.h	/^dlink_peek(dlink_t *dlink)$/;"	f
+dlink_peek_tail	inc/dlink.h	/^dlink_peek_tail(dlink_t *dlink)$/;"	f
+dlink_pop	inc/dlink.h	/^dlink_pop(dlink_t *dlink)$/;"	f
+dlink_pop_tail	inc/dlink.h	/^dlink_pop_tail(dlink_t *dlink)$/;"	f
+dlink_push	inc/dlink.h	/^dlink_push(dlink_t *dlink, dlink_entry_t *entry)$/;"	f
+dlink_push_tail	inc/dlink.h	/^dlink_push_tail(dlink_t *dlink, dlink_entry_t *entry)$/;"	f
+dlink_remove_entry	inc/dlink.h	/^dlink_remove_entry(dlink_entry_t *entry)$/;"	f
+dlink_t	inc/dlink.h	/^} dlink_t;$/;"	t	typeref:struct:_dlink_t
+dlp_initstate	frontend/frontend.c	/^int dlp_initstate = 0; \/\/flag: 0 is not init; 1 is init.$/;"	v
+dlp_state	frontend/frontend.c	/^int dlp_state = 0;  \/\/flag: 0 is off, 1 is on; used in projector debug$/;"	v
+draw_layers	backend/hardware/image/image.c	/^draw_layers(xmlNode * node,int index)$/;"	f
+draw_polygon	backend/hardware/image/image.c	/^static void draw_polygon(char *buf)$/;"	f	file:
+fback	frontend/frontend.c	/^feedback_t fback;$/;"	v
+feedback_t	frontend/frontend.h	/^}feedback_t;$/;"	t	typeref:struct:_feedback_t
+field_offset	inc/dlink.h	150;"	d
+file_check	frontend/frontend.c	/^int file_check = 0; \/\/flag: xml file check. 0 is no checked, 1 is checked.$/;"	v
+freze_time	frontend/frontend.h	/^	int freze_time;$/;"	m	struct:_parameters_t
+frontend_thread	frontend/frontend.c	/^void * frontend_thread()$/;"	f
+gatekeeper_thread	gatekeeper/gatekeeper.c	/^void * gatekeeper_thread()$/;"	f
+get_file	frontend/frontend.c	/^int  get_file(int cmd,int sockfd, int name)$/;"	f
+get_para	frontend/frontend.c	/^int  get_para(int cmd,int sockfd)$/;"	f
+getlocalip	backend/hardware/oled/oled.c	/^int getlocalip(char *outip)$/;"	f
+hand_client	gatekeeper/gatekeeper.c	/^int  hand_client(int sockfd)$/;"	f
+head	inc/dlink.h	/^    dlink_entry_t head;$/;"	m	struct:_dlink_t
+heartbeat	frontend/frontend.c	/^int heartbeat =0; \/\/flag:  1 means heartbeat timer is working$/;"	v
+heartbeat_timeout	frontend/frontend.c	/^time_t heartbeat_timeout;$/;"	v
+heartbeat_timer	frontend/frontend.c	/^void heartbeat_timer(int cmd,int sockfd)$/;"	f
+height	backend/hardware/image/image.c	/^int height = XGA_H;$/;"	v
+hung	frontend/frontend.c	/^int hung = 0;$/;"	v
+hung_action	frontend/frontend.c	/^int hung_action(int cmd,int sockfd)$/;"	f
+image_checkvalid	backend/hardware/image/image.c	/^xmlNodePtr image_checkvalid(char *file_path, xmlNodePtr root)$/;"	f
+image_end	backend/hardware/image/image.c	/^void image_end()$/;"	f
+image_fresh	backend/hardware/image/image.c	/^void image_fresh()$/;"	f
+image_fresh_color	backend/hardware/image/image.c	/^void image_fresh_color(unsigned int R, unsigned int G, unsigned int B)$/;"	f
+image_init	backend/hardware/image/image.c	/^void image_init()$/;"	f
+imagetest	backend/hardware/image/image.c	/^void imagetest(int w, int h) {$/;"	f
+info_t	frontend/frontend.h	/^} info_t;$/;"	t	typeref:struct:_info_t
+init_ssd1322	backend/hardware/oled/oled.c	/^void init_ssd1322(void)$/;"	f
+init_sys	core/core.c	/^int  init_sys()$/;"	f
+int_to_char	backend/hardware/oled/oled.c	/^unsigned char * int_to_char(int num)$/;"	f
+job_cmd	frontend/frontend.c	/^int job_cmd;$/;"	v
+layers	frontend/frontend.h	/^        int layers;$/;"	m	struct:_parameters_t
+layers_status	frontend/frontend.c	/^int layers_status;$/;"	v
+lock_fd	frontend/frontend.c	/^pthread_mutex_t lock_fd;$/;"	v
+lock_hung	frontend/frontend.c	/^pthread_mutex_t lock_hung;$/;"	v
+lock_job	frontend/frontend.c	/^pthread_mutex_t lock_job;$/;"	v
+magic	frontend/frontend.h	/^	int magic;$/;"	m	struct:_connect_t
+main	backend/hardware/image/test_image.c	/^int main(int argc, char **argv)$/;"	f
+main	core/core.c	/^int main()$/;"	f
+max_high	frontend/frontend.h	/^	int max_high;$/;"	m	struct:_info_t
+motor_delay_ms	backend/hardware/motor/motor.c	/^static void motor_delay_ms(int time)$/;"	f	file:
+motor_finish	backend/hardware/motor/motor.c	/^void motor_finish()$/;"	f
+motor_init	backend/hardware/motor/motor.c	/^int motor_init()$/;"	f
+motor_layer	backend/hardware/motor/motor.c	/^int motor_layer(int len)$/;"	f
+motor_move	frontend/frontend.c	/^int  motor_move(int cmd,int sockfd)$/;"	f
+motor_move_direction	frontend/frontend.c	/^int motor_move_direction;$/;"	v
+motor_move_dis	backend/hardware/motor/motor.c	/^int motor_move_dis(int direction, int len)$/;"	f
+motor_move_len	frontend/frontend.c	/^int motor_move_len;$/;"	v
+motor_to_low	backend/hardware/motor/motor.c	/^void motor_to_low()$/;"	f
+motor_walks	backend/hardware/motor/motor.c	/^int  motor_walks(int direction, unsigned int step_count)$/;"	f
+next	inc/dlink.h	/^    struct _dlink_entry_t *next;$/;"	m	struct:_dlink_entry_t	typeref:struct:_dlink_entry_t::_dlink_entry_t
+oled_init	backend/hardware/oled/oled.c	/^int oled_init(void)$/;"	f
+para_t	frontend/frontend.h	/^} para_t;$/;"	t	typeref:struct:_parameters_t
+parameter	frontend/frontend.c	/^para_t parameter;$/;"	v
+prepare_print	frontend/frontend.c	/^int  prepare_print(int cmd,int sockfd)$/;"	f
+prev	inc/dlink.h	/^    struct _dlink_entry_t *prev;$/;"	m	struct:_dlink_entry_t	typeref:struct:_dlink_entry_t::_dlink_entry_t
+projector_control	frontend/frontend.c	/^int projector_control(int cmd,int sockfd)$/;"	f
+recover_action	frontend/frontend.c	/^int recover_action(int cmd,int sockfd)$/;"	f
+send_info	frontend/frontend.c	/^int  send_info(int cmd,int sockfd)$/;"	f
+send_layers_status	frontend/frontend.c	/^int send_layers_status(int cmd,int sockfd)$/;"	f
+serial_dlp	frontend/frontend.c	/^int serial_dlp = 0;  \/\/flag: fd of dlp$/;"	v
+setTimer	backend/hardware/time/time.c	/^ void setTimer(timer_t *timerId, int timeMSec)  $/;"	f
+set_column_address	backend/hardware/oled/oled.c	/^void set_column_address(unsigned char a, unsigned char b)$/;"	f
+set_row_address	backend/hardware/oled/oled.c	/^void set_row_address(unsigned char a, unsigned char b)$/;"	f
+sockfd	frontend/frontend.h	/^	int sockfd;$/;"	m	struct:_info_t
+ssh_crc32	inc/crc32.c	/^ssh_crc32(const u_char *s, u_int len)$/;"	f
+ssh_crc32_s	inc/crc32.c	/^ssh_crc32_s(const u_char *s, u_int len,u_int crc32val_temp)$/;"	f
+start_cmd	backend/hardware/uart/uart.h	/^static const u8 start_cmd[CAMERA_CMD_LEN] = {$/;"	v
+start_print	backend/backend.c	/^int  start_print()$/;"	f
+status	frontend/frontend.c	/^int status;$/;"	v
+status	frontend/frontend.h	/^	int status;$/;"	m	struct:_connect_t
+status	frontend/frontend.h	/^	int status;$/;"	m	struct:_feedback_t
+status_send	frontend/frontend.c	/^int  status_send(feedback_t * fback ,int sockfd)$/;"	f
+stopTimer	backend/hardware/time/time.c	/^ void stopTimer(void)$/;"	f
+stop_cmd	backend/hardware/uart/uart.h	/^static const u8 stop_cmd[CAMERA_CMD_LEN] = {$/;"	v
+sys_info	frontend/frontend.c	/^info_t sys_info;$/;"	v
+thickness	frontend/frontend.h	/^	int thickness;$/;"	m	struct:_parameters_t
+u16	inc/typedef.h	/^typedef unsigned short u16;$/;"	t
+u32	inc/typedef.h	/^typedef unsigned long u32;$/;"	t
+u8	inc/typedef.h	/^typedef unsigned char u8;$/;"	t
+uart_dev_scan	backend/hardware/uart/uart.c	/^static int uart_dev_scan(int *fd)$/;"	f	file:
+uart_dlppoweroff	backend/hardware/uart/uart.c	/^int uart_dlppoweroff(int fd)$/;"	f
+uart_dlppoweron	backend/hardware/uart/uart.c	/^int uart_dlppoweron(int fd)$/;"	f
+uart_init	backend/hardware/uart/uart.c	/^int uart_init()$/;"	f
+uart_write	backend/hardware/uart/uart.c	/^static int uart_write(int fd, const u8 *buf, u32 len)$/;"	f	file:
+version	frontend/frontend.h	/^	int version;$/;"	m	struct:_info_t
+walk_one_step	backend/hardware/motor/motor.c	/^void walk_one_step()$/;"	f
+width	backend/hardware/image/image.c	/^int width = XGA_W;$/;"	v
+write_parameter	backend/hardware/oled/oled.c	/^void write_parameter(unsigned char Data)$/;"	f
+write_register	backend/hardware/oled/oled.c	/^void write_register(unsigned char Data)$/;"	f
