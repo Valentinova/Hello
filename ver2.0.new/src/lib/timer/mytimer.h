@@ -4,6 +4,8 @@
 #ifndef __MYTIMER_H__
 #define __MYTIMER_H__
 
+#include <time.h>
+
 typedef struct{
 	timer_t mytimer;
 	int interval;//ms
@@ -12,6 +14,7 @@ typedef struct{
 	}MyTimer;
 
 extern void InitHeartBeat(MyTimer* timer_ptr, int interval);
+extern void DestroyHeartBeat(MyTimer* timer_ptr);
 extern void ResetHeartBeat(MyTimer* timer_ptr);
 extern void StopHeartBeat(MyTimer* timer_ptr);
 extern int IsTimeout(MyTimer* timer_ptr);

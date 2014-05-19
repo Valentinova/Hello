@@ -1,25 +1,14 @@
-#include <pthread.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <signal.h>
-#include <errno.h>
-#include <string.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <memory.h>
-#include <fcntl.h>
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
+#include "global.h"
 #include "backend.h"
-#include "../frontend/frontend.h"
 
-extern xmlNodePtr image_checkvalid(char *file_path, xmlNodePtr root);
-extern void draw_layers(xmlNode * node,int index);
+/***********************************************/
+int image_initstate; 
+int dlp_state;
+int serial_dlp;
+int file_check;
 
-void Motor_move();
+int motor_move(int cmd,int sockfd);
+int projector_control(int cmd,int sockfd);
 int start_print();
 
 void * backend_thread()
@@ -92,7 +81,64 @@ int  start_print()
 	return 1;
 }
 
-void Motor_move()
+/***********************************************/
+int  motor_move(int cmd,int sockfd)
 {
-	motor_move_dis(motor_move_direction,motor_move_len);
+	int direction ,len;
+	direction = *(int *)command.buf;
+	len	= *(int *)(command.buf+sizeof(int));
+	printf("%d,%d  \n",direction,len);
+	motor_move_dis(direction,len);
+	fback.status = WORK_NORMAL;
+	fback.buf_len = 0;
+	status_send(&fback,sockfd);
+	return 1;
 }
+
+int projector_control(int cmd,int sockfd)
+{
+	int op, clr,layer,defi_x,defi_y,bold;
+	
+	printf(" In projector_control!\n");
+	
+	op = *(int *)command.buf;
+	switch(op)
+	{
+		case PROJ_ON: 
+			if(0 == dlp_state)  {uart_dlppoweron(serial_dlp); dlp_state=1;}else{ printf("Projector is already on\n");}
+			break;
+		case PROJ_OFF:
+			if(1 == dlp_state)  {uart_dlppoweroff(serial_dlp); dlp_state=0;}else{ printf("Projector is already off\n");}
+			break;
+		case PROJ_DEBUG:
+			clr = *((int *)command.buf+1);
+			//image_init();
+			if(0 == image_initstate){image_initstate = 1;image_init();}else{printf("image inited already\n");}	
+			switch(clr)
+				{
+				case 0: image_fresh_color(0, 0, 0);break;
+				case 1: image_fresh_color(255, 255, 255);break;
+				case 2: image_fresh_color(0, 0, 255);break;
+				case 3: image_fresh_color(0, 255, 0);break;
+				case 4: image_fresh_color(255, 0, 0);break;
+				case 5:
+					     defi_x = *((int *)command.buf+2);
+					     defi_y = *((int *)command.buf+3);
+					     bold= *((int *)command.buf+4);
+					     Draw_raster(defi_x, defi_y, bold); break;	//Raster  :int defi_x, int defi_y, int bold
+				case 6: imagetest(XGA_W, XGA_H); break; //JEPG Test	
+				}
+			break;
+		case PROJ_LAYER:
+			layer = *((int *)command.buf+1);
+			Image_fresh_layer(layer);
+			break;
+		default:
+			break;
+	}
+	fback.status = WORK_NORMAL;
+	fback.buf_len = 0;
+	status_send(&fback,sockfd);
+	return 1;
+}
+

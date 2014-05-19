@@ -1,18 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <jpeglib.h>
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h> 
-#include <unistd.h>
-#include "VG/openvg.h"
-#include "VG/vgu.h"
-#include "EGL/egl.h"
-#include "GLES/gl.h"
-#include "fontinfo.h"
-#include "shapes.h"
 #include "image.h"
-#include "../../../frontend/frontend.h"
 
 int width = XGA_W;
 int height = XGA_H;
@@ -79,7 +68,6 @@ void image_init()
 //      finish();                               // Graphics cleanup
 }
 
-
 void image_fresh()
 {
     Start(width, height);                   // Start the picture
@@ -137,7 +125,8 @@ void Draw_raster(int defi_x, int defi_y, int bold) //for printer debug
 	End();
 }
 
-void imagetest(int w, int h) {
+void imagetest(int w, int h) 
+{
 	int imgw = w, imgh = h;
 	VGfloat cx = 0, cy = 0;
 	Start(w, h);
@@ -242,13 +231,4 @@ exit:
 	return (xmlNodePtr)ret;
 
 }
-/* int image_display(char *file_path) */
-/* { */
-/* //	draw_layers(rootNode); */
-
-
-/* } */
-
-
-
 

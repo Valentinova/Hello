@@ -1,10 +1,25 @@
-#include "../global.h"
+#include <pthread.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <signal.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <memory.h>
+#include <fcntl.h>
+#include <arpa/inet.h>
+#include "../frontend/frontend.h"
 #include "gatekeeper.h"
 
 int hand_client(int sockfd);
 
 void * gatekeeper_thread()
 {
+
 	int sockfd,client_fd_temp; /*sock_fd：linsten socket；client_fd_temp：data transport socket */
 	struct sockaddr_in my_addr;
 	struct sockaddr_in remote_addr;
@@ -12,7 +27,7 @@ void * gatekeeper_thread()
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd == -1)
 	{
-		perror( "gatekeeper:socket created error\n");
+		perror( "socket created error\n");
 	   	exit(1);
 	}
 	my_addr.sin_family=AF_INET;
@@ -21,12 +36,12 @@ void * gatekeeper_thread()
 	bzero( &(my_addr.sin_zero),8);
 	if (bind(sockfd, (struct sockaddr *) &my_addr, sizeof(struct sockaddr)) == -1)
 	{
-		perror( "gatekeeper:bind error\n");
+		perror( "bind error\n");
 		exit(1);
 	}
 	if (listen(sockfd, BACKLOG) == -1)
 	{
-		perror( "gatekeeper:listen error\n");
+		perror( "listen error\n");
 		exit(1);
 	}
 	while(1)
@@ -34,10 +49,10 @@ void * gatekeeper_thread()
 		socklen_t sin_size = sizeof(struct sockaddr_in);
 		client_fd_temp = accept(sockfd, (struct sockaddr *) &remote_addr,&sin_size); 
 		if (client_fd_temp == -1) {
-			perror( "gatekeeper:accept error\n");
+			perror( "accept error\n");
 			continue;
 		}
-		printf( "gatekeeper:received a connection from %s\n",(char*)inet_ntoa(remote_addr.sin_addr));
+		printf( "received a connection from %s\n",(char*)inet_ntoa(remote_addr.sin_addr));
 		if(!hand_client(client_fd_temp))
 		{
 			close(client_fd_temp);
@@ -52,12 +67,12 @@ int  hand_client(int sockfd)
 	cmd_recv(&command,sockfd);
 	if(HANDSHAKE == command.cmd)
 	{
-		if(status_frontend == IDLE)
+		if(status_client_fd == IDLE)
 		{
-			pthread_mutex_lock(&lock_gatekeeper_require);
-			present_client_fd = sockfd;
-			require_gatekeeper = NEW_CLIENT;
-			pthread_mutex_unlock(&lock_gatekeeper_require);
+			pthread_mutex_lock(&lock_fd);
+			status_client_fd = sockfd;
+			pthread_cond_signal(&cond_fd);
+			pthread_mutex_unlock(&lock_fd);
 
 			fback.status = OFFLINE;
 			ret = 1;
