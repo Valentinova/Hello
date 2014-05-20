@@ -30,8 +30,8 @@
 #define ERROR		11
 #define MAXDATASIZE	1024
 #define SERVPORT 3333
+#define NEW_CLIENT 1000
 #define BACKLOG 1
-#define IDLE  -1
 //command
 #define HANDSHAKE	1
 #define SEND_INFO	2
@@ -46,18 +46,28 @@
 #define PROJ_CMD    12
 #define GET_FILE_JPEG 13
 #define HEARTBEAT   14
+#define RESET_PRINTER 15
 //project debug
 #define PROJ_ON     100
 #define PROJ_OFF    101
 #define PROJ_DEBUG  102
 #define PROJ_LAYER  103
 //feedback
-#define WORK_NORMAL	3
-#define WORK_ABNORMAL	4
+#define WORK_NORMAL	17
+#define WORK_ABNORMAL	18
+#define COMMAND_INVALID 16
 #define FINISH_MARK	2013
 //file name on server
 #define FILENAME	"test.xml"
 #define FILENAME2 "jpegtest.jpg"
+//status
+#define IDLE 0
+#define BUSY 1
+#define NONE -1
+#define PRINTING 2
+#define HUNG 3
+#define DEBUG 4
+#define INIT 5
 
 typedef struct _connect_t
 {
@@ -107,6 +117,7 @@ extern cmd_t command;
 extern feedback_t fback;
 extern int present_client_fd; 
 extern int layers_status;
+extern int new_file_flag; 
 extern info_t sys_info;
 extern para_t parameter;
 extern fifo* myfifo;

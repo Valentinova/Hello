@@ -32,6 +32,6 @@ extern void draw_layers(xmlNode * node,int index);
 void imagetest(int w, int h);
 void Draw_raster(int defi_x, int defi_y, int bold); //for printer debug
 void image_fresh_color(unsigned int R, unsigned int G, unsigned int B);
-void Image_fresh_layer(int layer);
+void Image_fresh_layer(int layer, int flag);
 
 #endif

@@ -1,4 +1,4 @@
-#include "global.h"
+#include "../global.h"
 #include "backend.h"
 
 /***********************************************/
@@ -17,7 +17,7 @@ int read_fifo(void);
 
 void * backend_thread()
 {
-	backend_init(void);
+	backend_init();
 
 	while(status_backend != INIT)
 	{
@@ -35,21 +35,21 @@ void * backend_thread()
 			case START_PRINT: status_backend = PRINTING;
 						      require_frontend = NONE;
 							  if(printing_job()){
-								  status_backend = IDEL;
+								  status_backend = IDLE;
 							  }else{
 								  printf("backend: printing job error \n");
 							  }break;
 			case MOTOR_MOVE: status_backend = DEBUG; 
 						     require_frontend = NONE;
 							 if(motor_move()){
-								 status_backend = IDEL;
+								 status_backend = IDLE;
 							 }else{
 								 printf("backend: MOTOR_MOVE error \n");
 							 }break;
 			case PROJ_CMD:   status_backend = DEBUG; 
 						     require_frontend = NONE;
 							 if(projector_control()){
-								 status_backend = IDEL;
+								 status_backend = IDLE;
 							 }else{
 								 printf("backend: PROJ_CMD error \n");
 							 }break;
@@ -64,7 +64,7 @@ int read_fifo(void){
 	if(fifo_out(myfifo, &back_command, sizeof(cmd_t))){
 		printf("backend: get a command from fifo \n");
 	}else{
-		printf("backend: fifo is empty\n");
+		//printf("backend: fifo is empty\n");
 		return NONE;
 	}
 	pthread_mutex_unlock(&lock_frontend_require);
@@ -95,7 +95,7 @@ int printing_job()
 		return 0;
 	}
 	uart_dlppoweroff(serial);
-	motor_finish()
+	motor_finish();
 	printf("backend: printing job finished! \n");
 	return 1;
 }
@@ -203,7 +203,8 @@ int projector_control(void)
 			break;
 		case PROJ_LAYER:
 			layer = *((int *)back_command.buf+1);
-			Image_fresh_layer(layer);
+			Image_fresh_layer(layer, new_file_flag);
+			new_file_flag = 0;
 			break;
 		default:
 			break;

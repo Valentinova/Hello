@@ -6,7 +6,7 @@
 #ifndef __FIFO_H__
 #define __FIFO_H__
 
-#define FIFO_LENGTH 20
+#define FIFO_LENGTH 10
 #define FIFO_ITEM_SIZE 1500 //cmd size is 1024 + 8 
 #define EMPTY	0x00
 #define FULL	0x01

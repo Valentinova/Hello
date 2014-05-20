@@ -86,18 +86,22 @@ void image_fresh_color(unsigned int R, unsigned int G, unsigned int B)
    	 End();    
 }
 
-void Image_fresh_layer(int layer)
+void Image_fresh_layer(int layer, int flag)
 {
 	static xmlNodePtr  tempNode1 = NULL;
 	xmlNodePtr  rootNode1 = NULL;
 	
-	if(0 == file_check){tempNode1 = image_checkvalid("test.xml",rootNode1); file_check = 1;}else{printf("xml file checked already \n");}
+	if(flag == 1){
+		tempNode1 = image_checkvalid("test.xml",rootNode1);
+	}else{
+		printf("xml file checked already \n");
+	}
 
 	if(layer < xmlChildElementCount(tempNode1) && layer >= 0)
 		{
 		draw_layers(tempNode1, layer);
 		}else{
-		printf("err: exceed  layers range \n ");
+		printf("err: exceed layers range \n ");
 		}
 }
 

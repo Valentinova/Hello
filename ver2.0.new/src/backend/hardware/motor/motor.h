@@ -5,10 +5,6 @@
 #ifndef __MOTOR_H__
 #define __MOTOR_H__
 
-
-#include "typedef.h"
-
-
 #define DRIVEPHASE	2
 #define MICRODIV	8
 #define MSPEED		400 /* as 1ms = 1000HZ* up to 1300HZ as known*/

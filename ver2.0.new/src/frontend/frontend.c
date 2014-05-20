@@ -83,7 +83,7 @@ void cmd_valid(void)
 	printf("frontend: command invalid \n");
 	fback.status = COMMAND_INVALID;
 	fback.buf_len = 0;
-	status_send(&fback,sockfd);
+	status_send(&fback,client_fd);
 }
 
 int  send_info(int cmd,int sockfd)
@@ -150,10 +150,9 @@ int  get_file(int cmd,int sockfd, int name)
 	fclose(fd);
 	fback.status = WORK_NORMAL;
 	fback.buf_len = 0;
-
-	file_check = 0; //new xml file is not checked
-
 	status_send(&fback,sockfd);
+
+	new_file_flag = 1;
 	return 1;
 }
 

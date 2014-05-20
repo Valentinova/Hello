@@ -80,7 +80,7 @@ int uart_init()
 	return fd;
 }
 
-static int uart_write(int fd, const u8 *buf, u32 len)
+static int uart_write(int fd, const unsigned char *buf, int len)
 {
 	int num = write(fd, buf, len);
 
