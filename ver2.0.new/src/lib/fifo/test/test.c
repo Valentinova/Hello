@@ -5,14 +5,24 @@
 #include <sys/types.h>
 #include "../fifo.h"
 
+#define MAXDATASIZE	1024
+typedef struct _cmd_t
+{
+	int cmd;
+	int buf_len;
+	char buf[MAXDATASIZE];
+}cmd_t;
+
 pthread_mutex_t lock_fifo;
 fifo* myfifo;
+cmd_t cmd,cmd2,cmd3;
 
 void * producer_thread1(void *pin){
 	pin = NULL;
 	while(1){
 		pthread_mutex_lock(&lock_fifo);
-		fifo_in(myfifo, 1);
+		cmd.cmd = 100;
+		fifo_in(myfifo, &cmd, sizeof(cmd_t));
 		pthread_mutex_unlock(&lock_fifo);
 		printf("producer1 put 1 into myfifo\n");
 		usleep(2000000);
@@ -24,7 +34,8 @@ void * producer_thread2(void *pin){
 	pin = NULL;
 	while(1){
 		pthread_mutex_lock(&lock_fifo);
-		fifo_in(myfifo, 2);
+		cmd.cmd = 200;
+		fifo_in(myfifo, &cmd, sizeof(cmd_t));
 		pthread_mutex_unlock(&lock_fifo);
 		printf("producer2 put 2 into myfifo\n");
 		usleep(1500000);
@@ -33,28 +44,26 @@ void * producer_thread2(void *pin){
 }
 
 void * consumer_thread1(void *pin){
-	int require = 0;
 	pin = NULL;
 	
 	while(1){
 		pthread_mutex_lock(&lock_fifo);
-		require = fifo_out(myfifo);
+		fifo_out(myfifo, &cmd2, sizeof(cmd_t));
 		pthread_mutex_unlock(&lock_fifo);
-		printf("	consumer1 get %d form myfifo\n", require);
+		printf("	consumer1 get %d form myfifo\n", cmd2.cmd);
 		usleep(1000000);
 	}
 		return((void*)0);
 }
 
 void * consumer_thread2(void *pin){
-	int require = 0;
 	pin = NULL;
 	
 	while(1){
 		pthread_mutex_lock(&lock_fifo);
-		require = fifo_out(myfifo);
+		fifo_out(myfifo, &cmd3, sizeof(cmd_t));
 		pthread_mutex_unlock(&lock_fifo);
-		printf("	consumer2 get %d form myfifo\n", require);
+		printf("	consumer2 get %d form myfifo\n", cmd3.cmd);
 		usleep(1000000);
 	}
 		return((void*)0);

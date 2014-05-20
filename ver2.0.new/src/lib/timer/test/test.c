@@ -9,10 +9,7 @@ MyTimer* beater;
 int main(){
 	int tmpchar = 0;
 	
-	beater = malloc(sizeof(MyTimer));
-	memset(beater, 0, sizeof(MyTimer));
-	
-	InitHeartBeat(beater, 1000);
+	beater = InitHeartBeat(1000);
 		
 	while(1){
 		

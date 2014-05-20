@@ -61,7 +61,12 @@ void * backend_thread()
 
 int read_fifo(void){
 	pthread_mutex_lock(&lock_frontend_require);
-	fifo_out(back_command);
+	if(fifo_out(myfifo, &back_command, sizeof(cmd_t))){
+		printf("backend: get a command from fifo \n");
+	}else{
+		printf("backend: fifo is empty\n");
+		return NONE;
+	}
 	pthread_mutex_unlock(&lock_frontend_require);
 	
 	return back_command.cmd;
@@ -107,7 +112,7 @@ int  start_print()
 	image_fresh();
 	if (tempNode)
 	{
-		printf("the total layers is %ld \n",xmlChildElementCount(tempNode));
+		printf("backend: file total layers is %ld \n",xmlChildElementCount(tempNode));
 		for( i = 0 ;i < xmlChildElementCount(tempNode); i++)
 		{
 			require_frontend = read_fifo();
@@ -127,12 +132,14 @@ int  start_print()
 						return 0;
 					}	
 				}
+			}else{
+				printf("backend: command valid in printing process...\n");
 			}
 
 			layers_status = i;
 			display_int(i);
 			draw_layers(tempNode,i);
-			printf("print %d layer\n",i);
+			printf("backend: print %dth layer\n",i);
 			sleep(parameter.cure_time);
 			image_fresh();
 			sleep(parameter.freze_time);
@@ -142,7 +149,7 @@ int  start_print()
 	}
 	else
 	{
-		printf("the file is wrong\n");
+		printf("backend: the file is wrong\n");
 	}
 	image_fresh();
 	image_end();

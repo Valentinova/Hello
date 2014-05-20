@@ -84,14 +84,14 @@ typedef struct _cmd_t
 {
 	int cmd;
 	int buf_len;
-	unsigned char buf[MAXDATASIZE];
+	char buf[MAXDATASIZE];
 }cmd_t;
 
 typedef struct _feedback_t
 {
 	int status;
 	int buf_len;
-	char  buf[MAXDATASIZE];
+	char buf[MAXDATASIZE];
 }feedback_t;
 
 extern pthread_mutex_t lock_gatekeeper_require;
@@ -109,5 +109,7 @@ extern int present_client_fd;
 extern int layers_status;
 extern info_t sys_info;
 extern para_t parameter;
+extern fifo* myfifo;
+extern MyTimer* heartbeat;
 
 #endif

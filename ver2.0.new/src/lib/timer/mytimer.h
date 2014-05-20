@@ -13,7 +13,7 @@ typedef struct{
     unsigned int resetcnt;
 	}MyTimer;
 
-extern void InitHeartBeat(MyTimer* timer_ptr, int interval);
+extern MyTimer* InitHeartBeat(int interval);
 extern void DestroyHeartBeat(MyTimer* timer_ptr);
 extern void ResetHeartBeat(MyTimer* timer_ptr);
 extern void StopHeartBeat(MyTimer* timer_ptr);

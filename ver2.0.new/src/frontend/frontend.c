@@ -37,7 +37,7 @@ void * frontend_thread()
 				printf("frontend: get command %d to excute \n", command.cmd);
 			}else if(ret == -1 || ret == 0){
 				printf("frontend: read socket error \n");
-				if(beat_timeout == 1){
+				if(IsTimeout(heartbeat) == 1){
 					printf("frontend: Heartbeat Timeout \n");
 					command.cmd = DISCONNECT; 
 				}
@@ -67,14 +67,18 @@ void * frontend_thread()
 		return((void*)0);
 }
 
-inline void write_fifo(void)
+void write_fifo(void)
 {
 	pthread_mutex_lock(&lock_frontend_require);
-	fifo_in(command);
+	if(fifo_in(myfifo, &command, sizeof(cmd_t))){
+		printf("frontend: push a command into fifo \n");
+	}else{
+		printf("frontend: fifo is full\n");
+	}
 	pthread_mutex_unlock(&lock_frontend_require);
 }
 
-inline void cmd_valid(void)
+void cmd_valid(void)
 {
 	printf("frontend: command invalid \n");
 	fback.status = COMMAND_INVALID;
@@ -122,7 +126,7 @@ int  get_file(int cmd,int sockfd, int name)
 	int i=0,ret=0;
 	if(name == 0){fd = fopen(FILENAME,"w");}else if(name == 1){remove(FILENAME2); fd = fopen(FILENAME2,"w");}
 	finish_mark =(int *) command.buf;
- 	if(firstbeat == 1) stopTimer();
+    StopHeartBeat(heartbeat);
 	while(*finish_mark != FINISH_MARK)
 	{
 		printf("%d receive %d bytes\n",i++,command.buf_len);
@@ -139,7 +143,7 @@ int  get_file(int cmd,int sockfd, int name)
 		finish_mark = (int *)command.buf;
 		printf("the finish_mark is %d\n",*finish_mark);
 	}
-	if(firstbeat == 1) Reset_HeartBeat();
+	ResetHeartBeat(heartbeat);
 	printf("the crc32 is %d and the recive is %d\n",crc32,*(int*)(command.buf+sizeof(int)));
 	if(crc32 == *(int*)(command.buf+sizeof(int)))
 		printf("the crc32 is right\n");
@@ -164,15 +168,10 @@ int send_layers_status(int cmd,int sockfd)
 
 void heartbeat_timer(int cmd,int sockfd)
 {
-	if(firstbeat == 0){ InitHeartBeat(); firstbeat = 1;} //first beat
+	ResetHeartBeat(heartbeat);
 	
-	Reset_HeartBeat();
-	beat_timeout = 0;
-	if(client_fd != IDLE)
-	{
 	fback.status = WORK_NORMAL;
 	fback.buf_len = 0;
 	status_send(&fback,sockfd);
-	}
 }
 

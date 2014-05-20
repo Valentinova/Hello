@@ -15,7 +15,7 @@ int internal_beat_timeout;
 void setTimer(timer_t *timerId, int timeMSec);  
 void CreateHeartBeat(MyTimer* timer_ptr);
 
-void InitHeartBeat(MyTimer* timer_ptr, int interval);
+MyTimer* InitHeartBeat(int interval);
 void DestroyHeartBeat(MyTimer* timer_ptr);
 void ResetHeartBeat(MyTimer* timer_ptr);
 void StopHeartBeat(MyTimer* timer_ptr);
@@ -71,11 +71,16 @@ void ResetHeartBeat(MyTimer* timer_ptr){
 	setTimer(&(timer_ptr->mytimer),timer_ptr->interval/*ms*/);
 }
 
-void InitHeartBeat(MyTimer* timer_ptr, int interval){
-	timer_ptr->interval = interval;
-	CreateHeartBeat(timer_ptr);
+MyTimer* InitHeartBeat(int interval){
+	MyTimer* beater;
+	beater = malloc(sizeof(MyTimer));
+	memset(beater, 0, sizeof(MyTimer));
+	
+	beater->interval = interval;
+	CreateHeartBeat(beater);
 	signal(SIGUSR1,(__sighandler_t)BeatTimeout);
-	setTimer(&(timer_ptr->mytimer),timer_ptr->interval/*ms*/);
+	setTimer(&(beater->mytimer),beater->interval/*ms*/);
+	return beater;
 }
 
 void DestroyHeartBeat(MyTimer* timer_ptr){

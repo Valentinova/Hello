@@ -13,6 +13,8 @@ cmd_t command;
 feedback_t fback;
 int layers_status;
 int present_client_fd; 
+fifo* myfifo;
+MyTimer* heartbeat;
 
 pthread_mutex_t lock_gatekeeper_require;
 pthread_mutex_t lock_frontend_require;
@@ -42,18 +44,24 @@ int main()
 
 int init_sys()
 {
-	pthread_mutex_init(&lock_fd,NULL);
-	pthread_mutex_init(&lock_job,NULL);
-	pthread_cond_init(&cond_fd,NULL);
-	pthread_cond_init(&cond_job,NULL);
-	status_client_fd = IDLE;
-	status_print_job = IDLE;
-	status_print_hung = 0;  //set to 1 when hung
+	pthread_mutex_init(&lock_gatekeeper_require,NULL);
+	pthread_mutex_init(&lock_frontend_require,NULL);
+	status_frontend = IDLE;
+	status_backend = INIT;
+	require_gatekeeper = NONE;
+	require_frontend = NONE;
+	myfifo = fifo_create();
+	heartbeat = InitHeartBeat(4000/*ms*/);
+    StopHeartBeat(heartbeat);
+
 	signal(SIGPIPE,SIG_IGN);//ignore the SIGPIPE signal
+	signal(SIGINT, keyboard_exit);
 
 	sys_info.version = 11;
 	sys_info.max_high = 22;
 	layers_status = -1;
+	present_client_fd = 0;
+
 	return 1;
 }
 
@@ -62,7 +70,7 @@ int status_send(feedback_t * fback ,int sockfd)
 	if((send(sockfd,fback,sizeof( feedback_t),0))==-1)
 	{
 		perror("send error");
-		exit(1);
+		return 0;
 	}
 	return 1;
 }
@@ -80,3 +88,9 @@ int cmd_recv( cmd_t * cmd,int sockfd)
 	return 1;       //reve correct
 }
 
+void keyboard_exit(int signo){
+	printf("exit by keyboard \n");
+	fifo_destroy(myfifo);
+	DestroyHeartBeat(heartbeat);
+	_exit(0);
+}
