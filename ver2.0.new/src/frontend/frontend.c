@@ -2,8 +2,6 @@
 #include "frontend.h"
 
 int client_fd;
-info_t sys_info;
-para_t parameter;
 
 void cmd_valid(void);
 void write_fifo(void);
@@ -21,10 +19,12 @@ void * frontend_thread()
 		while(status_frontend == IDLE)
 		{
 			if(require_gatekeeper == NEW_CLIENT){
-				pthread_mutex_lock(&lock_gatekeeper_require);
 				status_frontend = BUSY;
+				
+				pthread_mutex_lock(&lock_gatekeeper_require);
 				require_gatekeeper = NONE; 
 				pthread_mutex_unlock(&lock_gatekeeper_require);
+
 				client_fd = present_client_fd;
 				break;
 			}
@@ -69,9 +69,8 @@ void * frontend_thread()
 
 inline void write_fifo(void)
 {
-	
 	pthread_mutex_lock(&lock_frontend_require);
-	fifo_in(command.cmd);
+	fifo_in(command);
 	pthread_mutex_unlock(&lock_frontend_require);
 }
 
@@ -81,7 +80,6 @@ inline void cmd_valid(void)
 	fback.status = COMMAND_INVALID;
 	fback.buf_len = 0;
 	status_send(&fback,sockfd);
-
 }
 
 int  send_info(int cmd,int sockfd)

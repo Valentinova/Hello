@@ -11,7 +11,9 @@
 #define GPIO_DIRECTION	RPI_GPIO_P1_15
 #define GPIO_INPUT	RPI_GPIO_P1_07
 #define GPIO_INPUT1	RPI_GPIO_P1_22
+
 int motor_walks(int direction, unsigned int step_count);
+
 static void motor_delay_ms(int time)
 {
 	//usleep(time);
@@ -40,20 +42,25 @@ int motor_init()
 
 	bcm2835_gpio_write(GPIO_DIRECTION,DIR_UP);
 	motor_delay_ms(1);
-	printf("init\n");
+	printf("motor: waiting for initial position...\n");
 	while(bcm2835_gpio_lev(GPIO_INPUT1) == LEVEL_HIGH)
 	{
 		motor_walks(DIR_UP,100);
 	}
+	printf("motor: init done \n");
 	return ret;
 }
+
 void motor_to_low()
 {
+	printf("motor: waiting for printing position...\n");
 	while(bcm2835_gpio_lev(GPIO_INPUT) == LEVEL_HIGH)
 	{
 		motor_walks(DIR_DOWN,100);
 	}
+	printf("motor: done \n");
 }
+
 /* static void motor_prepare_print(void) */
 /* { */
 /* 	motor_delay_ms(D1); */
@@ -76,7 +83,6 @@ void motor_to_low()
 /* 	} */
 /* } */
 
-
 void walk_one_step()
 {
 
@@ -86,7 +92,6 @@ void walk_one_step()
 	motor_delay_ms(MSPEED/2);
 
 }
-
 
 int  motor_walks(int direction, unsigned int step_count)
 {
@@ -108,7 +113,6 @@ int  motor_walks(int direction, unsigned int step_count)
 
 int motor_layer(int len)
 {
-
 	int steps,gap_steps;
 	/*calcualte the step which needed
 	 * the mini length is 100um
@@ -123,7 +127,6 @@ int motor_layer(int len)
 	return 1;
 }
 
-	
 int motor_move_dis(int direction, int len)
 {
 	int steps = 0;
@@ -138,10 +141,10 @@ int motor_move_dis(int direction, int len)
 
 void motor_finish()
 {
-	
+	printf("motor: waiting for finishing position...\n");
 	while(bcm2835_gpio_lev(GPIO_INPUT1) == LEVEL_HIGH)
 	{
 		motor_walks(DIR_UP,100);
 	}
-
+	printf("motor: done \n");
 }

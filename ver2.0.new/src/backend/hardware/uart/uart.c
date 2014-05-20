@@ -76,7 +76,7 @@ int uart_init()
 	 * Note: pls don't change the usleep.
 	 */
 	usleep(1000);
-
+	printf("UART->DLP: init done \n");
 	return fd;
 }
 
@@ -118,7 +118,6 @@ int uart_dlppoweron(int fd)
 
 }
 
-
 int uart_dlppoweroff(int fd)
 {
 	int ret;
@@ -131,6 +130,4 @@ int uart_dlppoweroff(int fd)
 	return 0;
 
 }
-
-
 

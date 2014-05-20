@@ -107,5 +107,7 @@ extern cmd_t command;
 extern feedback_t fback;
 extern int present_client_fd; 
 extern int layers_status;
+extern info_t sys_info;
+extern para_t parameter;
 
 #endif

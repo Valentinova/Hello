@@ -7,6 +7,8 @@ int init_sys();
 int status_send(feedback_t * fback ,int sockfd);
 int cmd_recv( cmd_t * cmd,int sockfd);
 
+info_t sys_info;
+para_t parameter;
 cmd_t command;
 feedback_t fback;
 int layers_status;
@@ -52,11 +54,6 @@ int init_sys()
 	sys_info.version = 11;
 	sys_info.max_high = 22;
 	layers_status = -1;
-	image_init();
-	image_fresh();	
-	motor_init();
-	oled_init();
-	printf("init ready\n");
 	return 1;
 }
 

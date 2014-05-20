@@ -159,7 +159,6 @@ int display_ip(void);
 void init_ssd1322(void);
 void clear_oled (void);
 void display_font (void);
-//unsigned char * int_to_char(int num);
 
 void write_register(unsigned char Data)
 {
@@ -478,6 +477,7 @@ void display_font (void)
 
 	(void) display_ip();
 }
+
 void display_oled_image(const unsigned char * array)
 {
 	int i, j;
@@ -528,28 +528,10 @@ int oled_init(void)
 	display_int(0);
 //	bcm2835_spi_end();
 //	bcm2835_close();
-
+	printf("OLED: init done \n");
 	return 0;
 }
-/*
-unsigned char * int_to_char(int num)
-{
-	unsigned char array[10];
-	int temp = num;
-	int i =0;
-	for(i = 0;i<10;i++)
-	{
-		array[i] = temp % 10 +'0' ;
-		temp = temp / 10;
-		if(temp == 0)
-		{
-		 	array[i+1] = '\0';
-		 	break;
-		}
-	}
-	return array;
-}
-*/
+
 void display_int(int num)
 {
 	unsigned char array[10];

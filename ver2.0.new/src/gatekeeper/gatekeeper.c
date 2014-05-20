@@ -29,7 +29,8 @@ void * gatekeeper_thread()
 		perror( "gatekeeper:listen error\n");
 		exit(1);
 	}
-	while(1)
+
+	while(status_backend != INIT)
 	{
 		socklen_t sin_size = sizeof(struct sockaddr_in);
 		client_fd_temp = accept(sockfd, (struct sockaddr *) &remote_addr,&sin_size); 
@@ -43,7 +44,8 @@ void * gatekeeper_thread()
 			close(client_fd_temp);
 		}
 	}
-		return ((void *)0);
+
+	return ((void *)0);
 }
 
 int  hand_client(int sockfd)
@@ -54,8 +56,9 @@ int  hand_client(int sockfd)
 	{
 		if(status_frontend == IDLE)
 		{
-			pthread_mutex_lock(&lock_gatekeeper_require);
 			present_client_fd = sockfd;
+
+			pthread_mutex_lock(&lock_gatekeeper_require);
 			require_gatekeeper = NEW_CLIENT;
 			pthread_mutex_unlock(&lock_gatekeeper_require);
 
